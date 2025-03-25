@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import FAQ from "@/components/ui/faq";
 import AnimatedButton from "@/components/ui/AnimatedButton";
 import { useEffect, useRef, useState } from "react";
-import { Chatbot } from "@/components/ui/Chatbot";
 
 // import "../styles/globals.css";
 
