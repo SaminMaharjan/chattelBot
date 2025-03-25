@@ -49,7 +49,7 @@ const FloatingChatbot = () => {
 
 export default function Home() {
   // Properly type the ref as HTMLElement
-  const stripeButtonRef = useRef<HTMLElement>(null);
+
   const videoRef = useRef<HTMLVideoElement>(null); // Ref for the video element
   const overlayVideoRef = useRef<HTMLVideoElement>(null); // Add this line
   const [isExpanded, setIsExpanded] = useState(false); // State to track if the video is expanded
@@ -64,20 +64,6 @@ export default function Home() {
     }
     setIsExpanded(false);
   };
-
-  useEffect(() => {
-    // Load Stripe script dynamically
-    if (
-      typeof window !== "undefined" &&
-      !document.getElementById("stripe-buy-button")
-    ) {
-      const script = document.createElement("script");
-      script.id = "stripe-buy-button";
-      script.src = "https://js.stripe.com/v3/buy-button.js";
-      script.async = true;
-      document.head.appendChild(script);
-    }
-  }, []);
 
   // Sync playback between videos
   useEffect(() => {
@@ -400,21 +386,8 @@ export default function Home() {
                   for targeted follow-ups
                 </li>
               </ul>
-              <script
-                async
-                src="https://js.stripe.com/v3/buy-button.js"
-              ></script>
-              <div className="space-y-4 mt-6">
-                {/* Stripe Button with Dimmed Initial State and Hover Effect */}
-                <div className="relative inline-block">
-                  <div className="opacity-85 hover:opacity-100 transition-opacity duration-300">
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1R4pWJKKFOW0YMm9c73Og0pJ"
-                      publishable-key="pk_live_51R3j2VKKFOW0YMm9rL7G5CD2ED2b0XSFxAQmr2wHzCmOBPpKAir0CcQRAFC1X6gGAtlDirlKOq2YLRKrIm7HpiHO00e8Dk3AyN"
-                    ></stripe-buy-button>
-                  </div>
-                </div>
-              </div>
+              <script async></script>
+
               {/* Your Custom Button */}
               {/* <Button
                 className="bg-[#1d1e21] hover:bg-black text-white rounded-md px-4 py-2 mt-6"
@@ -456,21 +429,8 @@ export default function Home() {
                 </li>
               </ul>
 
-              <script
-                async
-                src="https://js.stripe.com/v3/buy-button.js"
-              ></script>
-              <div className="space-y-4 mt-6">
-                {/* Stripe Button with Dimmed Initial State and Hover Effect */}
-                <div className="relative inline-block">
-                  <div className="opacity-85 hover:opacity-100 transition-opacity duration-300">
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1R4pgvKKFOW0YMm9aKBXAwH4"
-                      publishable-key="pk_live_51R3j2VKKFOW0YMm9rL7G5CD2ED2b0XSFxAQmr2wHzCmOBPpKAir0CcQRAFC1X6gGAtlDirlKOq2YLRKrIm7HpiHO00e8Dk3AyN"
-                    ></stripe-buy-button>
-                  </div>
-                </div>
-              </div>
+              <script async></script>
+
               {/* <Button className="bg-[#1d1e21] hover:bg-black text-white rounded-md px-4 py-2 mt-6">
                 (Premium)
               </Button> */}
@@ -573,7 +533,7 @@ export default function Home() {
             <div>
               <h3 className="text-xl font-semibold mb-4">
                 How do I get my customer data?
-              </h3>
+              </h3>ChattelBot/src/app/page.tsx
               <p className="text-gray-600">
                 As soon as a lead is collected or a question is submitted, you
                 can be notified and emailed straight away.
