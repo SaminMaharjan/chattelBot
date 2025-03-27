@@ -65,11 +65,36 @@ export default function Home() {
     setIsExpanded(false);
   };
 
+  // Initialize video settings
+  useEffect(() => {
+    const initializeVideo = async () => {
+      if (videoRef.current) {
+        videoRef.current.muted = true;
+        videoRef.current.loop = true;
+
+        try {
+          // Attempt to play immediately
+          await videoRef.current.play();
+        } catch (err) {
+          // If autoplay fails, set up a user interaction fallback
+          const handleFirstInteraction = () => {
+            videoRef.current?.play();
+            document.removeEventListener("click", handleFirstInteraction);
+          };
+          document.addEventListener("click", handleFirstInteraction);
+        }
+      }
+    };
+
+    initializeVideo();
+  }, []);
+
   // Sync playback between videos
   useEffect(() => {
     if (!isExpanded && videoRef.current && overlayVideoRef.current) {
       videoRef.current.currentTime = overlayVideoRef.current.currentTime;
-      videoRef.current.muted = true; // Add this line
+      videoRef.current.muted = true;
+      videoRef.current.loop = true;
       videoRef.current.play().catch(() => {});
     }
   }, [isExpanded]);
@@ -271,10 +296,7 @@ export default function Home() {
                 muted
                 playsInline
               >
-                <source
-                  src="/images/explaning-Interstller.mp4"
-                  type="video/mp4"
-                />
+                <source src="/images/chattelbot-demo.mp4" type="video/mp4" />
               </video>
 
               {/* Overlay Video */}
@@ -305,7 +327,7 @@ export default function Home() {
                       }}
                     >
                       <source
-                        src="/images/explaning-Interstller.mp4"
+                        src="/images/chattelbot-demo.mp4"
                         type="video/mp4"
                       />
                     </video>
