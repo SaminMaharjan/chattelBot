@@ -180,7 +180,7 @@ export default function About() {
                   className="rounded-full object-cover"
                 />
               </div>
-              <h4 className="text-lg font-semibold">Gurkreet</h4>
+              <h4 className="text-lg font-semibold">Gurkeerat</h4>
               <p className="text-gray-600">
                 Co-Founder. CS student @University of Toronto, specializing in
                 artificial intelligence, machine learning, and software

@@ -12,14 +12,14 @@ const FAQ = () => {
         "Your chatbot's integrations can be virtually endless—from your landing page to WhatsApp, Notion, Slack, Zapier, and more!",
     },
     {
-      question: "How do I get my customer data?",
+      question: "How do I get my Customer’s data?",
       answer:
         "As soon as a lead is collected or a question is submitted, you can be notified and emailed straight away.",
     },
     {
       question: "What AI knowledge base is used?",
       answer:
-        "We use a mix of ChatGPT, Gemini, Claude, and more to ensure your bot is always at the top of its game.",
+        "We use a mix of ChatGPT, Gemini, Claude, and more to ensure your bot is always at the top of its game. The bot will then retrive upon you website data along with knowledge base documnnet that we'll create with you.",
     },
     {
       question: "How efficient is it?",

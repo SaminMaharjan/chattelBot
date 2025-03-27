@@ -180,10 +180,10 @@ export default function Home() {
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
               </span>{" "}
               for businesses that value their time. Get back to what matters,
-              while our ai chatbot handles the rest{" "}
+              while our AI chatbot handles the rest{" "}
               <span className="relative inline-block group">
                 <span className="bg-yellow-200 bg-opacity-70 px-1 transform -skew-x-6 inline-block">
-                  On Autopilot for 24/7.
+                  On Autopilot 24/7.
                 </span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
               </span>
@@ -358,7 +358,7 @@ export default function Home() {
               <h3 className="text-xl font-semibold mb-4">Normal Plan</h3>
               <p className="text-gray-600">Perfect for small businesses</p>
               <p className="text-4xl font-bold mt-4">
-                $500 <span className="mr-2 size=5">/month </span>
+                $500<span className="text-sm font-normal mt-3">/month </span>
               </p>
               <ul className="mt-6 space-y-2 text-gray-600 text-left">
                 <li className="flex items-start">
@@ -401,7 +401,9 @@ export default function Home() {
             <div className="bg-white rounded-lg p-8 shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Humanoid Plan</h3>
               <p className="text-gray-600">Advanced lead generation</p>
-              <p className="text-4xl font-bold mt-4">$1000</p>
+              <p className="text-4xl font-bold mt-4">
+                $1000<span className="text-sm font-normal mt-3">/month </span>
+              </p>
               <ul className="mt-6 space-y-2 text-gray-600 text-left">
                 <li className="flex items-start">
                   <span className="mr-2 text-purple-500">✔️</span>
@@ -452,7 +454,7 @@ export default function Home() {
             </p>
             <p className="mt-4 text-gray-600">
               We don’t just make vague chatbots using GPT but instead chatbots
-              designed and built to help you{" "}
+              designed and built to help you turn{" "}
               <span className="relative inline-block group">
                 <span className="bg-yellow-200 bg-opacity-70 px-1 transform -skew-x-6 inline-block">
                   leads into paying customers.
@@ -464,7 +466,7 @@ export default function Home() {
 
           {/* BESPOKE ON BESPOKE */}
           <div className="bg-white rounded-lg p-8 shadow-sm">
-            <h3 className="text-xl font-semibold mb-4">BESPOKE ON BESPOKE</h3>
+            <h3 className="text-xl font-semibold mb-4">CUSTOM MADE</h3>
             <p className="text-gray-600">
               We pride ourselves on our bespoke chatbots,{" "}
               <span className="relative inline-block group">
@@ -509,7 +511,8 @@ export default function Home() {
               you keep the money pumping.
             </p>
             <p className="mt-4 text-gray-600">
-              All we need from you is data and a vision, and we do the rest.
+              All we need from you is your services, your vision, and we do the
+              rest.
             </p>
           </div>
         </div>
