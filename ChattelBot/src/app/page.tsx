@@ -48,70 +48,38 @@ const FloatingChatbot = () => {
 };
 
 export default function Home() {
-  // Properly type the ref as HTMLElement
-
-  const videoRef = useRef<HTMLVideoElement>(null); // Ref for the video element
-  const overlayVideoRef = useRef<HTMLVideoElement>(null); // Add this line
-  const [isExpanded, setIsExpanded] = useState(false); // State to track if the video is expanded
-
-  const closeOverlay = () => {
-    if (overlayVideoRef.current && videoRef.current) {
-      // Sync current time before closing
-      videoRef.current.currentTime = overlayVideoRef.current.currentTime;
-      // Keep playing but mute when minimized
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => {});
-    }
-    setIsExpanded(false);
-  };
-
-  // Initialize video settings
-  useEffect(() => {
-    const initializeVideo = async () => {
-      if (videoRef.current) {
-        videoRef.current.muted = true;
-        videoRef.current.loop = true;
-
-        try {
-          // Attempt to play immediately
-          await videoRef.current.play();
-        } catch (err) {
-          // If autoplay fails, set up a user interaction fallback
-          const handleFirstInteraction = () => {
-            videoRef.current?.play();
-            document.removeEventListener("click", handleFirstInteraction);
-          };
-          document.addEventListener("click", handleFirstInteraction);
-        }
-      }
-    };
-
-    initializeVideo();
-  }, []);
-
-  // Sync playback between videos
-  useEffect(() => {
-    if (!isExpanded && videoRef.current && overlayVideoRef.current) {
-      videoRef.current.currentTime = overlayVideoRef.current.currentTime;
-      videoRef.current.muted = true;
-      videoRef.current.loop = true;
-      videoRef.current.play().catch(() => {});
-    }
-  }, [isExpanded]);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isVideoPaused, setIsVideoPaused] = useState(false);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
+  const mainVideoRef = useRef<HTMLIFrameElement>(null);
 
   const handleVideoClick = () => {
     setIsExpanded(true);
-    if (videoRef.current) {
-      videoRef.current.currentTime = videoRef.current.currentTime; // Maintain position
-      videoRef.current.play().catch(() => {});
-    }
+    setIsVideoPaused(false); // Reset pause state when expanding
   };
 
-  // Add click outside handler
+  const closeOverlay = () => {
+    setIsExpanded(false);
+    setIsVideoPaused(true); // Assume video is paused when closing overlay
+  };
+
+  const toggleVideoPlayback = () => {
+    if (mainVideoRef.current) {
+      // Force reload to restart playback
+      const src = mainVideoRef.current.src;
+      mainVideoRef.current.src = src;
+      setIsVideoPaused(false);
+    }
+  };
+  // Click outside handler
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (isExpanded && !overlayVideoRef.current?.contains(e.target as Node)) {
-        closeOverlay(); // Changed from setIsExpanded(false)
+      if (
+        isExpanded &&
+        videoContainerRef.current &&
+        !videoContainerRef.current.contains(e.target as Node)
+      ) {
+        closeOverlay();
       }
     };
 
@@ -121,11 +89,11 @@ export default function Home() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isExpanded]);
 
-  // Your existing ESC handler
+  // ESC key handler
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        closeOverlay(); // Changed from setIsExpanded(false)
+        closeOverlay();
       }
     };
 
@@ -285,30 +253,75 @@ export default function Home() {
               </div>
             </div>
             <div className="relative">
-              {/* Inline Video */}
-              <iframe
-                src="https://player.vimeo.com/video/YOUR_VIDEO_ID"
-                className="w-full h-auto rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02]"
-                allow="autoplay; fullscreen"
-              ></iframe>
+              {/* Main video container */}
+              <div
+                ref={videoContainerRef}
+                className="w-full aspect-video rounded-lg overflow-hidden relative"
+              >
+                <iframe
+                  ref={mainVideoRef}
+                  src="https://player.vimeo.com/video/1070537217?h=f1eb7f7dde&autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0&background=1"
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                />
 
-              {/* Overlay Video */}
-              {isExpanded && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
+                {/* Play/Pause button overlay (shown only when paused) */}
+                {isVideoPaused && (
                   <div
-                    className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
-                    onClick={closeOverlay}
-                  />
-                  <div
-                    className="relative"
-                    onClick={(e) => e.stopPropagation()}
+                    className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 cursor-pointer"
+                    onClick={toggleVideoPlayback}
                   >
+                    <div className="w-16 h-16 bg-white/80 rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                      <svg
+                        className="w-8 h-8 text-[#1d1e21]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Clickable overlay that opens expanded view */}
+              <div
+                className="absolute inset-0 cursor-pointer"
+                onClick={handleVideoClick}
+              />
+
+              {/* Expanded view */}
+              {isExpanded && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-75">
+                  <div className="relative w-full max-w-6xl aspect-video">
                     <iframe
-                      src="https://player.vimeo.com/video/YOUR_VIDEO_ID?autoplay=1"
-                      className="rounded-lg shadow-xl"
-                      style={{ maxHeight: "90vh", maxWidth: "90vw" }}
-                      allow="autoplay; fullscreen"
-                    ></iframe>
+                      src="https://player.vimeo.com/video/1070537217?h=f1eb7f7dde&autoplay=1&loop=1&title=0&byline=0&portrait=0"
+                      className="w-full h-full rounded-lg shadow-xl"
+                      frameBorder="0"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                    />
+                    <button
+                      onClick={closeOverlay}
+                      className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                      aria-label="Close video"
+                    >
+                      <svg
+                        className="w-8 h-8"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
               )}
