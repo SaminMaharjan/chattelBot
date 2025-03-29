@@ -645,7 +645,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between">
             <div>
               <Image
-                src="/images/logo-with-text-inverse.svg.png"
+                src="/images/logo-with-text-inverse.png"
                 alt="Roundtable Logo"
                 width={120}
                 height={28}
