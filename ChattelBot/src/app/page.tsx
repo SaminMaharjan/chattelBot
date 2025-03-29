@@ -142,8 +142,8 @@ export default function Home() {
       <header className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-200">
         <div className="flex items-center">
           <Image
-            src="/images/logo-with-text.svg"
-            alt="Roundtable Logo"
+            src="/images/logo-with-text.png"
+            alt="ChattelBot Logo"
             width={120}
             height={28}
             className="h-7 w-auto"
@@ -296,7 +296,7 @@ export default function Home() {
                 muted
                 playsInline
               >
-                <source src="/images/chattelbot-demo.mp4" type="video/mp4" />
+                <source src="/images/chattelbot-Demo.mp4" type="video/mp4" />
               </video>
 
               {/* Overlay Video */}
@@ -327,7 +327,7 @@ export default function Home() {
                       }}
                     >
                       <source
-                        src="/images/chattelbot-demo.mp4"
+                        src="/images/chattelbot-Demo.mp4"
                         type="video/mp4"
                       />
                     </video>
