@@ -19,7 +19,7 @@ const FAQ = () => {
     {
       question: "What AI knowledge base is used?",
       answer:
-        "We use a mix of ChatGPT, Gemini, Claude, and more to ensure your bot is always at the top of its game. The bot will then retrive upon your website data along with knowledge base documnnet that we'll create with you.",
+        "We use a mix of ChatGPT, Gemini, Claude, and more to ensure your bot is always at the top of its game. The bot will then retrive upon your website data along with knowledge base document that we'll create with you.",
     },
     {
       question: "How efficient is it?",
