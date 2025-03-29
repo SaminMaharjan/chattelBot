@@ -296,7 +296,7 @@ export default function Home() {
                 muted
                 playsInline
               >
-                <source src="/images/chattelbot-demo(1).mp4" type="video/mp4" />
+                <source src="/images/chattelbot-demo.mp4" type="video/mp4" />
               </video>
 
               {/* Overlay Video */}
@@ -327,7 +327,7 @@ export default function Home() {
                       }}
                     >
                       <source
-                        src="/images/chattelbot-demo(1).mp4"
+                        src="/images/chattelbot-demo.mp4"
                         type="video/mp4"
                       />
                     </video>
