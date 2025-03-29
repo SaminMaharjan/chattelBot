@@ -284,20 +284,13 @@ export default function Home() {
                 <span></span>
               </div>
             </div>
-
             <div className="relative">
               {/* Inline Video */}
-              <video
-                ref={videoRef}
-                className={`w-full h-auto rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
-                  isExpanded ? "hidden" : ""
-                }`}
-                onClick={handleVideoClick}
-                muted
-                playsInline
-              >
-                <source src="/images/chattelbot-Demo.mp4" type="video/mp4" />
-              </video>
+              <iframe
+                src="https://player.vimeo.com/video/YOUR_VIDEO_ID"
+                className="w-full h-auto rounded-lg cursor-pointer transition-all duration-300 hover:scale-[1.02]"
+                allow="autoplay; fullscreen"
+              ></iframe>
 
               {/* Overlay Video */}
               {isExpanded && (
@@ -310,27 +303,12 @@ export default function Home() {
                     className="relative"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <video
-                      ref={overlayVideoRef}
+                    <iframe
+                      src="https://player.vimeo.com/video/YOUR_VIDEO_ID?autoplay=1"
                       className="rounded-lg shadow-xl"
                       style={{ maxHeight: "90vh", maxWidth: "90vw" }}
-                      controls
-                      autoPlay
-                      muted={false}
-                      playsInline
-                      onPlay={() => {
-                        // Sync playback position when overlay starts playing
-                        if (videoRef.current && overlayVideoRef.current) {
-                          videoRef.current.currentTime =
-                            overlayVideoRef.current.currentTime;
-                        }
-                      }}
-                    >
-                      <source
-                        src="/images/chattelbot-Demo.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
+                      allow="autoplay; fullscreen"
+                    ></iframe>
                   </div>
                 </div>
               )}
