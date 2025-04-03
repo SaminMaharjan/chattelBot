@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
   description:
     "Chattelbot connects businesses to AI, helping them stay up-to-date with technology. Our chatbot answers FAQs, automates tasks, and converts leads—so you can focus on what matters most.",
 };
+
+
 
 export default function RootLayout({
   children,
