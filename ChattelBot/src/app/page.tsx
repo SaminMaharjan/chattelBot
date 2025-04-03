@@ -50,7 +50,7 @@ const FloatingChatbot = () => {
 export const metadata = {
   title: "ChattelBot",
   icons: {
-    icon: "/chattelfavicon.jpg",
+    icon: "/images/chattelfavicon.jpg",
   },
 };
 
