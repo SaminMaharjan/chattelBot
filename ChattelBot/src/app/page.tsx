@@ -47,6 +47,13 @@ const FloatingChatbot = () => {
   return null;
 };
 
+export const metadata = {
+  title: "ChattelBot",
+  icons: {
+    icon: "/chattelfavicon.jpg",
+  },
+};
+
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isVideoPaused, setIsVideoPaused] = useState(false);

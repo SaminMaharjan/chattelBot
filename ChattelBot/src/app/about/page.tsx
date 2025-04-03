@@ -12,7 +12,7 @@ export default function About() {
       <header className="w-full px-6 py-4 flex justify-between items-center border-b border-gray-200">
         <div className="flex items-center">
           <Image
-            src="/images/logo-with-text.svg"
+            src="/images/logo-with-text.png"
             alt="Roundtable Logo"
             width={120}
             height={28}
@@ -233,7 +233,7 @@ export default function About() {
           <div className="flex flex-col md:flex-row justify-between">
             <div>
               <Image
-                src="/images/logo-with-text-inverse.svg.png"
+                src="/images/logo-with-text-inverse.png"
                 alt="Roundtable Logo"
                 width={120}
                 height={28}
