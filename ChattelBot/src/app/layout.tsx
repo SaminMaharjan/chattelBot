@@ -9,7 +9,11 @@ export const metadata: Metadata = {
   title: "Chattelbot - AI-Powered Chatbot for Modern Businesses",
   description:
     "Chattelbot connects businesses to AI, helping them stay up-to-date with technology. Our chatbot answers FAQs, automates tasks, and converts leads—so you can focus on what matters most.",
-};
+
+    icons: {
+      icon: "/images/chattelfavicon.jpg", // Add your favicon here
+    },
+  };
 
 
 
